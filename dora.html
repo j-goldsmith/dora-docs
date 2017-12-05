@@ -57,6 +57,30 @@
 </dd></dl>
 
 </div>
+<div class="section" id="module-dora.benchmarks">
+<span id="dora-benchmarks-module"></span><h2>dora.benchmarks module<a class="headerlink" href="#module-dora.benchmarks" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="dora.benchmarks.Benchmarks">
+<em class="property">class </em><code class="descclassname">dora.benchmarks.</code><code class="descname">Benchmarks</code><span class="sig-paren">(</span><em>sql_config</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.benchmarks.Benchmarks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#dora.datasources.SqlSource" title="dora.datasources.SqlSource"><code class="xref py py-class docutils literal"><span class="pre">dora.datasources.SqlSource</span></code></a></p>
+<dl class="method">
+<dt id="dora.benchmarks.Benchmarks.clientActivity">
+<code class="descname">clientActivity</code><span class="sig-paren">(</span><em>aggregate=False</em>, <em>min_date='1900-1-1'</em>, <em>max_date=None</em>, <em>clientids=[]</em>, <em>sample_size=100</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.benchmarks.Benchmarks.clientActivity" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dora.benchmarks.Benchmarks.insert">
+<code class="descname">insert</code><span class="sig-paren">(</span><em>function</em>, <em>args</em>, <em>kwargs</em>, <em>start</em>, <em>end</em>, <em>is_cached</em>, <em>client_id</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.benchmarks.Benchmarks.insert" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dora.benchmarks.Benchmarks.statsByFunction">
+<code class="descname">statsByFunction</code><span class="sig-paren">(</span><em>min_date='1900-1-1'</em>, <em>max_date=None</em>, <em>functions=[]</em>, <em>sample_size=100</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.benchmarks.Benchmarks.statsByFunction" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
 <div class="section" id="module-dora.categories">
 <span id="dora-categories-module"></span><h2>dora.categories module<a class="headerlink" href="#module-dora.categories" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
@@ -64,18 +88,28 @@
 <em class="property">class </em><code class="descclassname">dora.categories.</code><code class="descname">Categories</code><span class="sig-paren">(</span><em>asterix_config</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.categories.Categories" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#dora.datasources.AsterixSource" title="dora.datasources.AsterixSource"><code class="xref py py-class docutils literal"><span class="pre">dora.datasources.AsterixSource</span></code></a></p>
 <dl class="method">
+<dt id="dora.categories.Categories.childrenOf">
+<code class="descname">childrenOf</code><span class="sig-paren">(</span><em>node_id=0</em>, <em>classfication_only=False</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.categories.Categories.childrenOf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dora.categories.Categories.parentOf">
+<code class="descname">parentOf</code><span class="sig-paren">(</span><em>node_id</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.categories.Categories.parentOf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
 <dt id="dora.categories.Categories.parentOf_depth1">
 <code class="descname">parentOf_depth1</code><span class="sig-paren">(</span><em>node_id</em>, <em>depth=None</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.categories.Categories.parentOf_depth1" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="dora.categories.Categories.parentsOf">
-<code class="descname">parentsOf</code><span class="sig-paren">(</span><em>node_id</em>, <em>depth=None</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.categories.Categories.parentsOf" title="Permalink to this definition">¶</a></dt>
+<dt id="dora.categories.Categories.parentsOfOriginal">
+<code class="descname">parentsOfOriginal</code><span class="sig-paren">(</span><em>node_id</em>, <em>depth=None</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.categories.Categories.parentsOfOriginal" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="dora.categories.Categories.search">
-<code class="descname">search</code><span class="sig-paren">(</span><em>string_search=''</em>, <em>classfication_only=False</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.categories.Categories.search" title="Permalink to this definition">¶</a></dt>
+<code class="descname">search</code><span class="sig-paren">(</span><em>string_search=''</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.categories.Categories.search" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -167,35 +201,75 @@
 <dd><p>Bases: <a class="reference internal" href="#dora.datasources.SqlSource" title="dora.datasources.SqlSource"><code class="xref py py-class docutils literal"><span class="pre">dora.datasources.SqlSource</span></code></a></p>
 <dl class="method">
 <dt id="dora.customers.Customers.clusterCustomers">
-<code class="descname">clusterCustomers</code><span class="sig-paren">(</span><em>n_clusters=0</em>, <em>algorithm='auto'</em>, <em>init='k-means++'</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.customers.Customers.clusterCustomers" title="Permalink to this definition">¶</a></dt>
-<dd><p>Clusters the customers together based on gender, zipcode, numOrders, and TotalSpent.</p>
+<code class="descname">clusterCustomers</code><span class="sig-paren">(</span><em>feature_set=None, n_clusters=8, algorithm='auto', init='k-means++', cluster_on=['numorders', 'gender', 'totalpop', 'totalspent', 'zipcode', 'medianage', 'totalmales', 'totalfemales'], scale=False</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.customers.Customers.clusterCustomers" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clusters the customers together based on gender, zipcode, numOrders, and TotalSpent.
+:param feature_set: optional. must have keys ‘results’ and ‘columns’.
+:type feature_set: QueryResponse or dictionary
+:param Data that will be clustered.:
+:param num_clusters: optional. default=8 The number of clusters to form as well as
+:type num_clusters: int
+:param the number of centroids to generate.:
+:param algorithm: optional. “auto”, “full” or “elkan”, default=”auto”. K-means algorithm
+:type algorithm: string
+:param to use. The classical EM-style algorithm is “full”. The “elkan” variation is more efficient:
+:param by using the triangle inequality, but currently doesn’t support sparse data. “auto” chooses:
+:param “elkan” for dense data and “full” for sparse data.:
+:param init: optional. {‘k-means++’, ‘random’ or an ndarray}. Method for initialization,
+:type init: string
+:param defaults to ‘k-means++’: ‘k-means++’ : selects initial cluster centers for k-mean
+:param clustering in a smart way to speed up convergence. See section Notes in k_init for more:
+:param details.:
+:param ‘random’: choose k observations (rows) at random from data for the initial centroids.
+:param If an ndarray is passed, it should be of shape:
+:type If an ndarray is passed, it should be of shape: n_clusters, n_features
+:param initial centers.:
+:param cluster_on: column names to use as cluster features
+:type cluster_on: list of str</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">tuple(numorders’, ‘gender’, ‘totalpop’, ‘totalspent’, ‘zipcode’, ‘customermatchedid’,
+‘medianage’, ‘totalmales’, ‘totalfemales’, ‘householdid’, ‘firstname’, ‘numcustomerid’,
+‘cluster’, ‘customerids): numOrders is the number of times a customer has purchased a book.
+gender is the gender of the customer. zipcode identifiies the customers location.  TotalPop
+is the total population for the zipcode. MedianAge is the median age of the population for
+the zipcode. customermatchedid is the number of customerids that matched with the customer.
+TotalMales is the total number of males of the population for the zipcode. TotalFemales is
+the totalnumber of females of the population for the zipcode. TotalSpent is the total amount
+the customer has spent on books. householdid is the customer’s hosuehold identification.
+firstname is the customer’s name.numCustomerid is the number of customerids per customer.
+cluster is the label of the cluster the customer belongs to. customerids is a list of all
+the customerids that correspond to that customer.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="dora.customers.Customers.idsForCustomer">
+<code class="descname">idsForCustomer</code><span class="sig-paren">(</span><em>customermatchedids=[]</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.customers.Customers.idsForCustomer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dora.customers.Customers.membersOfHousehold">
+<code class="descname">membersOfHousehold</code><span class="sig-paren">(</span><em>householdID=0</em>, <em>sample_size=100</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.customers.Customers.membersOfHousehold" title="Permalink to this definition">¶</a></dt>
+<dd><p>For each household, find the customerid, firstname, and gender for each member.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>num_clusters</strong> (<em>int</em>) – optional. default=8 The number of clusters to form as well as</li>
-<li><strong>number of centroids to generate.</strong> (<em>the</em>) – </li>
-<li><strong>algorithm</strong> (<em>string</em>) – optional. “auto”, “full” or “elkan”, default=”auto”. K-means algorithm</li>
-<li><strong>use. The classical EM-style algorithm is “full”. The “elkan” variation is more efficient</strong> (<em>to</em>) – </li>
-<li><strong>using the triangle inequality</strong><strong>, </strong><strong>but currently doesn’t support sparse data. “auto” chooses</strong> (<em>by</em>) – </li>
-<li><strong>for dense data and “full” for sparse data.</strong> (<em>“elkan”</em>) – </li>
-<li><strong>init</strong> (<em>string</em>) – optional. {‘k-means++’, ‘random’ or an ndarray}. Method for initialization,</li>
-<li><strong>to ‘k-means++’</strong> (<em>defaults</em>) – ‘k-means++’ : selects initial cluster centers for k-mean</li>
-<li><strong>in a smart way to speed up convergence. See section Notes in k_init for more</strong> (<em>clustering</em>) – </li>
-<li><strong>details.</strong> – </li>
-<li><strong>‘random’</strong> – choose k observations (rows) at random from data for the initial centroids.</li>
-<li><strong>an ndarray is passed</strong><strong>, </strong><strong>it should be of shape</strong> (<em>If</em>) – </li>
-<li><strong>centers.</strong> (<em>initial</em>) – </li>
+<li><strong>householdID</strong> (<em>stirng</em>) – optional. The householdID that the members will be found of.</li>
+<li><strong>sample_size</strong> (<em>int</em>) – optional. Percentage of the data the query will run over.</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">householdid is the customer’s hosuehold
-identification. firstname is the customer’s name. y_pred is the cluster label for
-that customer.</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">customerid is the unique customer id. firstname is the
+name of the customer. gender is the gender of the customer.</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">tuple(householdid, firstname, y_pred)</p>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">tuple(customerid, firstname, gender)</p>
 </td>
 </tr>
 </tbody>
@@ -203,8 +277,36 @@ that customer.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="dora.customers.Customers.clusterQuery">
-<code class="descname">clusterQuery</code><span class="sig-paren">(</span><em>min_date='1900-1-1'</em>, <em>max_date=None</em>, <em>sample_size=100</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.customers.Customers.clusterQuery" title="Permalink to this definition">¶</a></dt>
+<dt id="dora.customers.Customers.productsByHousehold">
+<code class="descname">productsByHousehold</code><span class="sig-paren">(</span><em>min_date='1900-1-1'</em>, <em>max_date=None</em>, <em>householdID=0</em>, <em>sample_size=100</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.customers.Customers.productsByHousehold" title="Permalink to this definition">¶</a></dt>
+<dd><p>For each household, all of the products that have been purchased.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>min_date</strong> (<em>string</em>) – optional. date. Limits the search result timeframe.</li>
+<li><strong>max_date</strong> (<em>string</em>) – optional. date. Limits the timeframe for which</li>
+<li><strong>results will be returned</strong> (<a class="reference internal" href="#module-dora.customers" title="dora.customers"><em>customers</em></a>) – </li>
+<li><strong>householdID</strong> (<em>stirng</em>) – optional. The householdID that the members will be found of.</li>
+<li><strong>sample_size</strong> (<em>int</em>) – optional. Percentage of the data the query will run over.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">product is the unique product id. asin is the product code
+of the product that was purchased.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">tuple(productid, asin, gender)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="dora.customers.Customers.statsByCustomer">
+<code class="descname">statsByCustomer</code><span class="sig-paren">(</span><em>min_date='1900-1-1'</em>, <em>max_date=None</em>, <em>householdid=[]</em>, <em>sample_size=100</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.customers.Customers.statsByCustomer" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="docutils">
 <dt>For each customer, find the number of books orders, gender, zipcode, household,</dt>
 <dd>first name, and total spend on books.</dd>
@@ -217,18 +319,20 @@ that customer.</p>
 <li><strong>min_date</strong> (<em>string</em>) – optional. date. Limits the search result timeframe.</li>
 <li><strong>max_date</strong> (<em>string</em>) – optional. date. Limits the timeframe for which</li>
 <li><strong>results will be returned</strong> (<a class="reference internal" href="#module-dora.customers" title="dora.customers"><em>customers</em></a>) – </li>
+<li><strong>householdid</strong> (<em>tuple</em>) – optional. householdids that will be excluded from the query results.</li>
 <li><strong>sample_size</strong> (<em>int</em>) – optional. Percentage of the data the query will run over.</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">numOrders
-is the number of times a customer has purchased a book. gender is the gender of the
-customer. zipcode identifiies the customers location. householdid is the customer’s
-hosuehold identification. firstname is the customer’s name. TotalSpent is the total
-amount the customer has spent on books.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">tuple(numOrders, gender, zipcode, householdid, firstname, TotalSpent)</p>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">tuple(numOrders, gender, zipcode, TotalPop, MedianAge, TotalMales, TotalFemales,
+TotalSpent,householdid, firstname,numCustomerid ): numOrders is the number of times a
+customer has purchased a book. gender is the gender of the customer. zipcode identifiies
+the customers location.  TotalPop is the total population for the zipcode. MedianAge is
+the median age of the population for the zipcode. TotalMales is the total number of males
+of the population for the zipcode. TotalFemales is the total number of females of the
+population for the zipcode. TotalSpent is the total amount the customer has spent on books.
+householdid is the customer’s hosuehold identification. firstname is the customer’s name.
+numCustomerid is the number of customerids per customer.</p>
 </td>
 </tr>
 </tbody>
@@ -236,19 +340,33 @@ amount the customer has spent on books.</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="dora.customers.Customers.membersOfHousehold">
-<code class="descname">membersOfHousehold</code><span class="sig-paren">(</span><em>min_date=None</em>, <em>max_date=None</em>, <em>sample_size=100</em>, <em>householdID=0</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.customers.Customers.membersOfHousehold" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="dora.customers.Customers.productsByHousehold">
-<code class="descname">productsByHousehold</code><span class="sig-paren">(</span><em>min_date=None</em>, <em>max_date=None</em>, <em>sample_size=100</em>, <em>householdID=0</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.customers.Customers.productsByHousehold" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
 <dt id="dora.customers.Customers.statsByHousehold">
-<code class="descname">statsByHousehold</code><span class="sig-paren">(</span><em>min_date=None</em>, <em>max_date=None</em>, <em>sample_size=100</em>, <em>order_by='TotalOrders'</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.customers.Customers.statsByHousehold" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="descname">statsByHousehold</code><span class="sig-paren">(</span><em>min_date='1900-1-1'</em>, <em>max_date=None</em>, <em>sample_size=100</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.customers.Customers.statsByHousehold" title="Permalink to this definition">¶</a></dt>
+<dd><p>For each household find the total amount spent, the total number of order, the orderdate of
+thefirst and last order, the time spent as customer and the time since the last order.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>min_date</strong> (<em>string</em>) – optional. date. Limits the search result timeframe.</li>
+<li><strong>max_date</strong> (<em>string</em>) – optional. date. Limits the timeframe for which</li>
+<li><strong>results will be returned</strong> (<a class="reference internal" href="#module-dora.customers" title="dora.customers"><em>customers</em></a>) – </li>
+<li><strong>sample_size</strong> (<em>int</em>) – optional. Percentage of the data the query will run over.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">tuple(householdid, TotalSpent, TotalOrders, first_order, last_order, time_as_customer,
+time_since_last_order): householdid is the unique household id. TotalSpent is the amount of
+money spenton all order. TotalOrders is the number of orders that have been made by that
+household. first_order is the time when the first order was made. last_order is the time
+since the lastorder. time_as_customer is the time the members of the household has been
+customers.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 </dd></dl>
 
@@ -288,6 +406,16 @@ amount the customer has spent on books.</p>
 <dt id="dora.datasources.QueryResponse">
 <em class="property">class </em><code class="descclassname">dora.datasources.</code><code class="descname">QueryResponse</code><span class="sig-paren">(</span><em>columns</em>, <em>results</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.datasources.QueryResponse" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="dora.datasources.QueryResponse.to_csv">
+<code class="descname">to_csv</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.datasources.QueryResponse.to_csv" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dora.datasources.QueryResponse.to_pandas">
+<code class="descname">to_pandas</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dora.datasources.QueryResponse.to_pandas" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -300,30 +428,6 @@ amount the customer has spent on books.</p>
 <dt id="dora.datasources.SqlSource">
 <em class="property">class </em><code class="descclassname">dora.datasources.</code><code class="descname">SqlSource</code><span class="sig-paren">(</span><em>sql_config</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.datasources.SqlSource" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#dora.datasources.Cacheable" title="dora.datasources.Cacheable"><code class="xref py py-class docutils literal"><span class="pre">dora.datasources.Cacheable</span></code></a></p>
-</dd></dl>
-
-</div>
-<div class="section" id="module-dora.doraviz">
-<span id="dora-doraviz-module"></span><h2>dora.doraviz module<a class="headerlink" href="#module-dora.doraviz" title="Permalink to this headline">¶</a></h2>
-<dl class="class">
-<dt id="dora.doraviz.VizExplorer">
-<em class="property">class </em><code class="descclassname">dora.doraviz.</code><code class="descname">VizExplorer</code><a class="headerlink" href="#dora.doraviz.VizExplorer" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
-<dl class="method">
-<dt id="dora.doraviz.VizExplorer.bar">
-<code class="descname">bar</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>response</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.doraviz.VizExplorer.bar" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="dora.doraviz.VizExplorer.line">
-<code class="descname">line</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>response</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.doraviz.VizExplorer.line" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="dora.doraviz.VizExplorer.scatter">
-<code class="descname">scatter</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>response</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.doraviz.VizExplorer.scatter" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 </dd></dl>
 
 </div>
@@ -343,13 +447,65 @@ amount the customer has spent on books.</p>
 <dd><p>Bases: <a class="reference internal" href="#dora.datasources.SqlSource" title="dora.datasources.SqlSource"><code class="xref py py-class docutils literal"><span class="pre">dora.datasources.SqlSource</span></code></a></p>
 <dl class="method">
 <dt id="dora.orders.Orders.statsByProduct">
-<code class="descname">statsByProduct</code><span class="sig-paren">(</span><em>min_date='1900-1-1'</em>, <em>max_date=None</em>, <em>sample_size=100</em>, <em>order_by='num_orders'</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.orders.Orders.statsByProduct" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="descname">statsByProduct</code><span class="sig-paren">(</span><em>min_date='1900-1-1'</em>, <em>max_date=None</em>, <em>sample_size=100</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.orders.Orders.statsByProduct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Produces statistics for each product.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>min_date</strong> (<em>string</em>) – optional. date. Limits the search result timeframe.</li>
+<li><strong>max_date</strong> (<em>string</em>) – optional. date. Limits the timeframe for which</li>
+<li><strong>results will be returned</strong> (<a class="reference internal" href="#module-dora.customers" title="dora.customers"><em>customers</em></a>) – </li>
+<li><strong>sample_size</strong> (<em>int</em>) – optional. Percentage of the data the query will run over.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">tuple(productid, asin, num_orders, first_order, last_order, days_on_sale, unitprice_min,
+unitprice_max, uniteprice_avg, numunits_min, numunits_max, numunits_avg, numunites_sum,
+totalprice_min, totalprice_max, totalprice_avg, totalprice_sum): productid is the unique
+identifier for the product. asin is the asin for the product. first_order is the date of the
+first product being shipped. last_order is the last day an order was shipped. days_on_sale
+is the total number of days the product was on sale. unitprice_min is the minimum price the
+product. unitprice_max is the maximum price for the product. unitprice_avg is the average
+price for the product. numunits_min is the minimum number of times the book was purchased in
+one order. numunits_max is the largest number of times the book was purchased in one order.
+numunits_avg is the average number of times the book was purchased in the same order.
+numunits_sum is the number of times the book was purchased.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="dora.orders.Orders.statsByZipcode">
 <code class="descname">statsByZipcode</code><span class="sig-paren">(</span><em>min_date='1900-1-1'</em>, <em>max_date=None</em>, <em>sample_size=100</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.orders.Orders.statsByZipcode" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>For each zipcode, determine the number of orders and the total amount of money has been spent.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>min_date</strong> (<em>string</em>) – optional. date. Limits the search result timeframe.</li>
+<li><strong>max_date</strong> (<em>string</em>) – optional. date. Limits the timeframe for which</li>
+<li><strong>results will be returned</strong> (<a class="reference internal" href="#module-dora.customers" title="dora.customers"><em>customers</em></a>) – </li>
+<li><strong>sample_size</strong> (<em>int</em>) – optional. Percentage of the data the query will run over.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">countyname is the name of the
+county the zipcode corresonds to. countypop is the population of the county. NumofOrders is
+the number of orders that have been purchased by customers in the zipcode. TotalSpending is
+the amount of money customers in the zipcode have purchased.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">tuple(countyname, countypop, ‘NumofOrders’, ‘TotalSpending’)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 </dd></dl>
 
@@ -361,8 +517,13 @@ amount the customer has spent on books.</p>
 <em class="property">class </em><code class="descclassname">dora.products.</code><code class="descname">Products</code><span class="sig-paren">(</span><em>sql_config</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.products.Products" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#dora.datasources.SqlSource" title="dora.datasources.SqlSource"><code class="xref py py-class docutils literal"><span class="pre">dora.datasources.SqlSource</span></code></a></p>
 <dl class="method">
+<dt id="dora.products.Products.byCategory">
+<code class="descname">byCategory</code><span class="sig-paren">(</span><em>nodeid</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.products.Products.byCategory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
 <dt id="dora.products.Products.clusterProducts">
-<code class="descname">clusterProducts</code><span class="sig-paren">(</span><em>n_clusters=8</em>, <em>algorithm='auto'</em>, <em>asin=None</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.products.Products.clusterProducts" title="Permalink to this definition">¶</a></dt>
+<code class="descname">clusterProducts</code><span class="sig-paren">(</span><em>feature_set=None, n_clusters=8, algorithm='auto', cluster_on=['numorders', 'avgrating', 'category', 'days_on_sale', 'spring_sales', 'summer_sales', 'fall_sales', 'winter_sales'], random_state=None, asin=None, scale=False, PCA=False, n_components=8</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.products.Products.clusterProducts" title="Permalink to this definition">¶</a></dt>
 <dd><p>Clusters the books together using KMeans clustering utilizing the clusterQuery
 results as the features (num_orders, avgrating, category, and days_on_sale).</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -376,6 +537,8 @@ results as the features (num_orders, avgrating, category, and days_on_sale).</p>
 <li><strong>use. The classical EM-style algorithm is “full”. The “elkan” variation is more efficient</strong> (<em>to</em>) – </li>
 <li><strong>using the triangle inequality</strong><strong>, </strong><strong>but currently doesn’t support sparse data. “auto” chooses</strong> (<em>by</em>) – </li>
 <li><strong>for dense data and “full” for sparse data.</strong> (<em>“elkan”</em>) – </li>
+<li><strong>random_state</strong> (<em>int</em>) – optional. int used to genderate random number.</li>
+<li><strong>asin</strong> (<em>tuple</em><em>(</em><em>string</em><em>)</em>) – optional. asins will be the centers of the kmeans clustering.</li>
 </ul>
 </td>
 </tr>
@@ -384,70 +547,6 @@ identification of the book. y_pred is the label of the clsuter that the product 
 </td>
 </tr>
 <tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">tuple(productid, asin, y_pred)</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="dora.products.Products.clusterQuery">
-<code class="descname">clusterQuery</code><span class="sig-paren">(</span><em>min_date='1900-1-1'</em>, <em>max_date=None</em>, <em>sample_size=100</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.products.Products.clusterQuery" title="Permalink to this definition">¶</a></dt>
-<dd><p>For each book the product id, asin, the number of times it was purchased,
-the average star rating, the product category, and days the product has been on sale
-is returned.</p>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>min_date</strong> (<em>string</em>) – optional. date. Limits the search result timeframe .</li>
-<li><strong>max_date</strong> (<em>string</em>) – optional. date. Limits the search result timeframe.</li>
-<li><strong>sample_size</strong> (<em>int</em>) – optional. Percentage of the data the query will run over.</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">productid is
-the products unqiue identifier. asin is the identification of the book. num_orders
-counts the number of times the book has been purchased. avgrating is the average star
-rating of the book based on the user reviews. category is the product category that the
-book belongs to. days_on_sale is the number of days the book has been on sale.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">tuple(productid, asin, num_orders, avgrating, category, days_on_sale)</p>
-</td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
-<dt id="dora.products.Products.clusterQueryCustomers">
-<code class="descname">clusterQueryCustomers</code><span class="sig-paren">(</span><em>min_date='1900-1-1'</em>, <em>max_date=None</em>, <em>sample_size=100</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.products.Products.clusterQueryCustomers" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="docutils">
-<dt>For each customer, find the number of books orders, gender, zipcode, household,</dt>
-<dd>first name, and total spend on books.</dd>
-</dl>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>min_date</strong> (<em>string</em>) – optional. date. Limits the search result timeframe.</li>
-<li><strong>max_date</strong> (<em>string</em>) – optional. date. Limits the timeframe for which</li>
-<li><strong>results will be returned</strong> (<a class="reference internal" href="#module-dora.customers" title="dora.customers"><em>customers</em></a>) – </li>
-<li><strong>sample_size</strong> (<em>int</em>) – optional. Percentage of the data the query will run over.</li>
-</ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">numOrders
-is the number of times a customer has purchased a book. gender is the gender of the
-customer. zipcode identifiies the customers location. householdid is the customer’s
-hosuehold identification. firstname is the customer’s name. TotalSpent is the total
-amount the customer has spent on books.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">tuple(numOrders, gender, zipcode, householdid, firstname, TotalSpent)</p>
 </td>
 </tr>
 </tbody>
@@ -485,8 +584,98 @@ the book the book was purchased.</p>
 </dd></dl>
 
 <dl class="method">
+<dt id="dora.products.Products.priceDistribution">
+<code class="descname">priceDistribution</code><span class="sig-paren">(</span><em>bins=5</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.products.Products.priceDistribution" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
 <dt id="dora.products.Products.ratingsDistribution">
-<code class="descname">ratingsDistribution</code><span class="sig-paren">(</span><em>min_date='1900-1-1'</em>, <em>max_date=None</em>, <em>sample_size=100</em>, <em>asin=[]</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.products.Products.ratingsDistribution" title="Permalink to this definition">¶</a></dt>
+<code class="descname">ratingsDistribution</code><span class="sig-paren">(</span><em>min_date='1900-1-1'</em>, <em>max_date=None</em>, <em>asin=[]</em>, <em>sample_size=100</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.products.Products.ratingsDistribution" title="Permalink to this definition">¶</a></dt>
+<dd><p>For each product, determine the how many 1, 2, 3, 4, and 5 star reviews the product received.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>min_date</strong> (<em>string</em>) – optional. date. inclusive bottom limit of reviewTime</li>
+<li><strong>max_date</strong> (<em>string</em>) – optional. date. inclusive upper limit of reviewTime</li>
+<li><strong>asin</strong> (<em>list</em>) – optional. The asins of the products the rating distrubtion will be produced</li>
+<li><strong>Defaults to returning distributions for all asins</strong> (<em>for.</em>) – </li>
+<li><strong>sample_size</strong> (<em>int</em>) – optional. Percentage of the reviews the query will run over.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><dl class="docutils">
+<dt>QueryResponse(asin, productid, ‘one_star_votes’, ‘two_star_votes’, ‘three_star_votes’,</dt>
+<dd><p class="first last">’four_star_votes’, ‘five_star_votes) (tuple(str,int,int,int,int,int,int)):
+asin is the label for the book. productid is the unique identifier for the product.
+one_star_votes is the number of one star reveiws the book
+received. two_star_votes is the number of two star reveiws the book received.
+three_star_votes is the number of three star reveiws the book received. four_star_votes is
+the number of four star reveiws the book received. five_star_votes is the number of five
+star reveiws the book received.</p>
+</dd>
+</dl>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="dora.products.Products.seasonalOrderDistribution">
+<code class="descname">seasonalOrderDistribution</code><span class="sig-paren">(</span><em>asin=[]</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.products.Products.seasonalOrderDistribution" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dora.products.Products.statsByProduct">
+<code class="descname">statsByProduct</code><span class="sig-paren">(</span><em>asin=[]</em>, <em>min_date='1900-1-1'</em>, <em>max_date=None</em>, <em>sample_size=100</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.products.Products.statsByProduct" title="Permalink to this definition">¶</a></dt>
+<dd><p>For each book the product id, asin, the number of times it was purchased,
+the average star rating, the product category, and days the product has been on sale
+is returned.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>min_date</strong> (<em>string</em>) – optional. date. Limits the search result timeframe .</li>
+<li><strong>max_date</strong> (<em>string</em>) – optional. date. Limits the search result timeframe.</li>
+<li><strong>sample_size</strong> (<em>int</em>) – optional. Percentage of the data the query will run over.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">productid is
+the products unqiue identifier. asin is the identification of the book. num_orders
+counts the number of times the book has been purchased. avgrating is the average star
+rating of the book based on the user reviews. category is the product category that the
+book belongs to. days_on_sale is the number of days the book has been on sale.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">tuple(productid, asin, num_orders, avgrating, category, days_on_sale)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-dora.recommendations">
+<span id="dora-recommendations-module"></span><h2>dora.recommendations module<a class="headerlink" href="#module-dora.recommendations" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="dora.recommendations.Recommendations">
+<em class="property">class </em><code class="descclassname">dora.recommendations.</code><code class="descname">Recommendations</code><span class="sig-paren">(</span><em>sql_config</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.recommendations.Recommendations" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#dora.datasources.SqlSource" title="dora.datasources.SqlSource"><code class="xref py py-class docutils literal"><span class="pre">dora.datasources.SqlSource</span></code></a></p>
+<dl class="method">
+<dt id="dora.recommendations.Recommendations.insert">
+<code class="descname">insert</code><span class="sig-paren">(</span><em>customerid</em>, <em>productid</em>, <em>rank</em>, <em>timestamp</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.recommendations.Recommendations.insert" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dora.recommendations.Recommendations.statsByProduct">
+<code class="descname">statsByProduct</code><span class="sig-paren">(</span><em>productids=[]</em>, <em>min_date='1900-1-1'</em>, <em>max_date=None</em>, <em>sample_size=100</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.recommendations.Recommendations.statsByProduct" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -541,6 +730,51 @@ the book the book was purchased.</p>
 </dd></dl>
 
 </div>
+<div class="section" id="module-dora.vis">
+<span id="dora-vis-module"></span><h2>dora.vis module<a class="headerlink" href="#module-dora.vis" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="dora.vis.QueryVis">
+<em class="property">class </em><code class="descclassname">dora.vis.</code><code class="descname">QueryVis</code><span class="sig-paren">(</span><em>columns</em>, <em>results</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.vis.QueryVis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="dora.vis.QueryVis.bar">
+<code class="descname">bar</code><span class="sig-paren">(</span><em>title=None</em>, <em>cols=None</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.vis.QueryVis.bar" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dora.vis.QueryVis.line">
+<code class="descname">line</code><span class="sig-paren">(</span><em>x</em>, <em>cols=None</em>, <em>title=None</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.vis.QueryVis.line" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dora.vis.QueryVis.scatter">
+<code class="descname">scatter</code><span class="sig-paren">(</span><em>x=None</em>, <em>y=None</em>, <em>z=None</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.vis.QueryVis.scatter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="dora.vis.VisExplorer">
+<em class="property">class </em><code class="descclassname">dora.vis.</code><code class="descname">VisExplorer</code><a class="headerlink" href="#dora.vis.VisExplorer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="dora.vis.VisExplorer.bar">
+<code class="descname">bar</code><span class="sig-paren">(</span><em>query_response</em>, <em>x=None</em>, <em>y=None</em>, <em>z=None</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.vis.VisExplorer.bar" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dora.vis.VisExplorer.line">
+<code class="descname">line</code><span class="sig-paren">(</span><em>query_response</em>, <em>x=None</em>, <em>y=None</em>, <em>z=None</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.vis.VisExplorer.line" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="dora.vis.VisExplorer.scatter">
+<code class="descname">scatter</code><span class="sig-paren">(</span><em>query_response</em>, <em>x=None</em>, <em>y=None</em>, <em>z=None</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.vis.VisExplorer.scatter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
 <div class="section" id="module-dora">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-dora" title="Permalink to this headline">¶</a></h2>
 </div>
@@ -557,15 +791,17 @@ the book the book was purchased.</p>
 <li><a class="reference internal" href="#">dora package</a><ul>
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
 <li><a class="reference internal" href="#module-dora.api">dora.api module</a></li>
+<li><a class="reference internal" href="#module-dora.benchmarks">dora.benchmarks module</a></li>
 <li><a class="reference internal" href="#module-dora.categories">dora.categories module</a></li>
 <li><a class="reference internal" href="#module-dora.config">dora.config module</a></li>
 <li><a class="reference internal" href="#module-dora.customers">dora.customers module</a></li>
 <li><a class="reference internal" href="#module-dora.datasources">dora.datasources module</a></li>
-<li><a class="reference internal" href="#module-dora.doraviz">dora.doraviz module</a></li>
 <li><a class="reference internal" href="#module-dora.logger">dora.logger module</a></li>
 <li><a class="reference internal" href="#module-dora.orders">dora.orders module</a></li>
 <li><a class="reference internal" href="#module-dora.products">dora.products module</a></li>
+<li><a class="reference internal" href="#module-dora.recommendations">dora.recommendations module</a></li>
 <li><a class="reference internal" href="#module-dora.reviews">dora.reviews module</a></li>
+<li><a class="reference internal" href="#module-dora.vis">dora.vis module</a></li>
 <li><a class="reference internal" href="#module-dora">Module contents</a></li>
 </ul>
 </li>

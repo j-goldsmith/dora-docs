@@ -12,14 +12,6 @@ dora\.api module
     :undoc-members:
     :show-inheritance:
 
-dora\.benchmarks module
------------------------
-
-.. automodule:: dora.benchmarks
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
 dora\.categories module
 -----------------------
 
@@ -52,6 +44,14 @@ dora\.datasources module
     :undoc-members:
     :show-inheritance:
 
+dora\.doraviz module
+--------------------
+
+.. automodule:: dora.doraviz
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 dora\.logger module
 -------------------
 
@@ -76,26 +76,10 @@ dora\.products module
     :undoc-members:
     :show-inheritance:
 
-dora\.recommendations module
-----------------------------
-
-.. automodule:: dora.recommendations
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
 dora\.reviews module
 --------------------
 
 .. automodule:: dora.reviews
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-dora\.vis module
-----------------
-
-.. automodule:: dora.vis
     :members:
     :undoc-members:
     :show-inheritance:
