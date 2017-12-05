@@ -54,6 +54,51 @@
 <dt id="dora.api.DataExplorer">
 <em class="property">class </em><code class="descclassname">dora.api.</code><code class="descname">DataExplorer</code><span class="sig-paren">(</span><em>config=&lt;dora.config.Config object&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.api.DataExplorer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Main instantiated class for Dora package</p>
+<p>Contains properties for each submodule in the package. Init
+with a Config object.</p>
+<dl class="attribute">
+<dt id="dora.api.DataExplorer.benchmarks">
+<code class="descname">benchmarks</code><a class="headerlink" href="#dora.api.DataExplorer.benchmarks" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>SqlSource</em> – submodule to query api benchmarks</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dora.api.DataExplorer.categories">
+<code class="descname">categories</code><a class="headerlink" href="#dora.api.DataExplorer.categories" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>AsterixSource</em> – submodule to query categories</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dora.api.DataExplorer.customers">
+<code class="descname">customers</code><a class="headerlink" href="#dora.api.DataExplorer.customers" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>SqlSource</em> – submodule to query customers</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dora.api.DataExplorer.orders">
+<code class="descname">orders</code><a class="headerlink" href="#dora.api.DataExplorer.orders" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>SqlSource</em> – submodule to query orders</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dora.api.DataExplorer.products">
+<code class="descname">products</code><a class="headerlink" href="#dora.api.DataExplorer.products" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>SqlSource</em> – submodule to query products</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dora.api.DataExplorer.recommendations">
+<code class="descname">recommendations</code><a class="headerlink" href="#dora.api.DataExplorer.recommendations" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>SqlSource</em> – submodule to query ML model output</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dora.api.DataExplorer.reviews">
+<code class="descname">reviews</code><a class="headerlink" href="#dora.api.DataExplorer.reviews" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>SqlSource, SolrSource</em> – submodule to query reviews</p>
+</dd></dl>
+
 </dd></dl>
 
 </div>
@@ -65,18 +110,67 @@
 <dd><p>Bases: <a class="reference internal" href="#dora.datasources.SqlSource" title="dora.datasources.SqlSource"><code class="xref py py-class docutils literal"><span class="pre">dora.datasources.SqlSource</span></code></a></p>
 <dl class="method">
 <dt id="dora.benchmarks.Benchmarks.clientActivity">
-<code class="descname">clientActivity</code><span class="sig-paren">(</span><em>aggregate=False</em>, <em>min_date='1900-1-1'</em>, <em>max_date=None</em>, <em>clientids=[]</em>, <em>sample_size=100</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.benchmarks.Benchmarks.clientActivity" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="descname">clientActivity</code><span class="sig-paren">(</span><em>aggregate=False</em>, <em>min_date='1900-1-1'</em>, <em>max_date=None</em>, <em>clientid_filter=None</em>, <em>sample_size=100</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.benchmarks.Benchmarks.clientActivity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hourly aggregate API activity by client.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>aggregate</strong> (<em>bool</em>) – individual results or aggregate all clients</li>
+<li><strong>min_date</strong> (<em>string</em>) – optional. date. Limits the search result timeframe .</li>
+<li><strong>max_date</strong> (<em>string</em>) – optional. date. Limits the search result timeframe.</li>
+<li><strong>clientid_filter</strong> (<em>None</em><em> or </em><em>list</em>) – optional. List of clientids to query.</li>
+<li><strong>sample_size</strong> (<em>int</em>) – optional. Percentage of the benchmarks the query will run over.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><p>columns (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>): [‘clientid’,’hour’,’api_calls’]</p>
+<p>results (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">tuple(str,int,int)</span></code></p>
+</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#dora.datasources.QueryResponse" title="dora.datasources.QueryResponse">QueryResponse</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="dora.benchmarks.Benchmarks.insert">
 <code class="descname">insert</code><span class="sig-paren">(</span><em>function</em>, <em>args</em>, <em>kwargs</em>, <em>start</em>, <em>end</em>, <em>is_cached</em>, <em>client_id</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.benchmarks.Benchmarks.insert" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Log an API call.</p>
+</dd></dl>
 
 <dl class="method">
 <dt id="dora.benchmarks.Benchmarks.statsByFunction">
-<code class="descname">statsByFunction</code><span class="sig-paren">(</span><em>min_date='1900-1-1'</em>, <em>max_date=None</em>, <em>functions=[]</em>, <em>sample_size=100</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.benchmarks.Benchmarks.statsByFunction" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="descname">statsByFunction</code><span class="sig-paren">(</span><em>min_date='1900-1-1'</em>, <em>max_date=None</em>, <em>function_filter=None</em>, <em>sample_size=100</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.benchmarks.Benchmarks.statsByFunction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execution stats for API functions.</p>
+<p>Stats aggregated by function_name and is_cached.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>min_date</strong> (<em>string</em>) – optional. date. Limits the search result timeframe .</li>
+<li><strong>max_date</strong> (<em>string</em>) – optional. date. Limits the search result timeframe.</li>
+<li><strong>function_filter</strong> (<em>None</em><em> or </em><em>list</em>) – optional. List of function names to query.</li>
+<li><strong>sample_size</strong> (<em>int</em>) – optional. Percentage of the benchmarks the query will run over.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><p>columns (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>): [‘function_name’,’is_cached’,’avg_runtime_seconds’,’total_runtime_seconds’,’invocations’]</p>
+<p>results (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">tuple(str,bool,float,float,int)</span></code></p>
+</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#dora.datasources.QueryResponse" title="dora.datasources.QueryResponse">QueryResponse</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 </dd></dl>
 
@@ -89,28 +183,60 @@
 <dd><p>Bases: <a class="reference internal" href="#dora.datasources.AsterixSource" title="dora.datasources.AsterixSource"><code class="xref py py-class docutils literal"><span class="pre">dora.datasources.AsterixSource</span></code></a></p>
 <dl class="method">
 <dt id="dora.categories.Categories.childrenOf">
-<code class="descname">childrenOf</code><span class="sig-paren">(</span><em>node_id=0</em>, <em>classfication_only=False</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.categories.Categories.childrenOf" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="descname">childrenOf</code><span class="sig-paren">(</span><em>node_id</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.categories.Categories.childrenOf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the direct children categories of node_id.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>node_id</strong> (<em>int</em>) – </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">columns (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>): [‘nodeID’,’level’,’child_node_id’]<p>results (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">tuple(int,int,int)</span></code></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#dora.datasources.QueryResponse" title="dora.datasources.QueryResponse">QueryResponse</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="dora.categories.Categories.parentOf">
 <code class="descname">parentOf</code><span class="sig-paren">(</span><em>node_id</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.categories.Categories.parentOf" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="dora.categories.Categories.parentOf_depth1">
-<code class="descname">parentOf_depth1</code><span class="sig-paren">(</span><em>node_id</em>, <em>depth=None</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.categories.Categories.parentOf_depth1" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="dora.categories.Categories.parentsOfOriginal">
-<code class="descname">parentsOfOriginal</code><span class="sig-paren">(</span><em>node_id</em>, <em>depth=None</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.categories.Categories.parentsOfOriginal" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Get the direct parent category of node_id.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>node_id</strong> (<em>int</em>) – </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">columns (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>): [‘nodeID’,’level’,’parent_node_id’]<p>results (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">tuple(int,int,int)</span></code></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#dora.datasources.QueryResponse" title="dora.datasources.QueryResponse">QueryResponse</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="dora.categories.Categories.search">
 <code class="descname">search</code><span class="sig-paren">(</span><em>string_search=''</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.categories.Categories.search" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Case-sensitive search of all category levels.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>string_search</strong> (<em>str</em>) – </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">columns (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>): [‘classification’,’nodeid’,’level_0’,’level_1’,’level_2’,’level_3’,’level_4’,’level_5’]<p>results (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">tuple(str,int,str,str,str,str,str,str)</span></code></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#dora.datasources.QueryResponse" title="dora.datasources.QueryResponse">QueryResponse</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 </dd></dl>
 
@@ -124,23 +250,27 @@
 <dl class="attribute">
 <dt id="dora.config.AsterixConfig.cache_ttl">
 <code class="descname">cache_ttl</code><a class="headerlink" href="#dora.config.AsterixConfig.cache_ttl" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Cache time-to-live in seconds</p>
+</dd></dl>
 
 <dl class="attribute">
 <dt id="dora.config.AsterixConfig.collection">
 <code class="descname">collection</code><a class="headerlink" href="#dora.config.AsterixConfig.collection" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Collection to query</p>
+</dd></dl>
 
 <dl class="attribute">
 <dt id="dora.config.AsterixConfig.host">
 <code class="descname">host</code><a class="headerlink" href="#dora.config.AsterixConfig.host" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>AsterixDB host API url.</p>
+<p>ie, <a class="reference external" href="http://localhost:19002">http://localhost:19002</a></p>
+</dd></dl>
 
 </dd></dl>
 
 <dl class="class">
 <dt id="dora.config.Config">
-<em class="property">class </em><code class="descclassname">dora.config.</code><code class="descname">Config</code><span class="sig-paren">(</span><em>path='production.config'</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.config.Config" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">dora.config.</code><code class="descname">Config</code><span class="sig-paren">(</span><em>path=None</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.config.Config" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
 </dd></dl>
 
@@ -148,6 +278,7 @@
 <dt id="dora.config.ConfigType">
 <em class="property">class </em><code class="descclassname">dora.config.</code><code class="descname">ConfigType</code><span class="sig-paren">(</span><em>d</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.config.ConfigType" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Wrapper type for config property accessibility.</p>
 <dl class="method">
 <dt id="dora.config.ConfigType.get_property">
 <code class="descname">get_property</code><span class="sig-paren">(</span><em>property_name</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.config.ConfigType.get_property" title="Permalink to this definition">¶</a></dt>
@@ -162,12 +293,15 @@
 <dl class="attribute">
 <dt id="dora.config.SolrConfig.cache_ttl">
 <code class="descname">cache_ttl</code><a class="headerlink" href="#dora.config.SolrConfig.cache_ttl" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Cache time-to-live in seconds</p>
+</dd></dl>
 
 <dl class="attribute">
 <dt id="dora.config.SolrConfig.host">
 <code class="descname">host</code><a class="headerlink" href="#dora.config.SolrConfig.host" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Solr host API url.</p>
+<p>ie, <a class="reference external" href="http://localhost:8983/solr/bookstore_pr/">http://localhost:8983/solr/bookstore_pr/</a></p>
+</dd></dl>
 
 </dd></dl>
 
@@ -178,17 +312,20 @@
 <dl class="attribute">
 <dt id="dora.config.SqlConfig.cache_ttl">
 <code class="descname">cache_ttl</code><a class="headerlink" href="#dora.config.SqlConfig.cache_ttl" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Cache time-to-live in seconds</p>
+</dd></dl>
 
 <dl class="attribute">
 <dt id="dora.config.SqlConfig.connection_string">
 <code class="descname">connection_string</code><a class="headerlink" href="#dora.config.SqlConfig.connection_string" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>SQL Connection string. Should be compatible with psycopg2.</p>
+</dd></dl>
 
 <dl class="attribute">
 <dt id="dora.config.SqlConfig.random_seed">
 <code class="descname">random_seed</code><a class="headerlink" href="#dora.config.SqlConfig.random_seed" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Integer for query sampling. Using the same seed will result in repeatable queries.</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -202,36 +339,33 @@
 <dl class="method">
 <dt id="dora.customers.Customers.clusterCustomers">
 <code class="descname">clusterCustomers</code><span class="sig-paren">(</span><em>feature_set=None, n_clusters=8, algorithm='auto', init='k-means++', cluster_on=['numorders', 'gender', 'totalpop', 'totalspent', 'zipcode', 'medianage', 'totalmales', 'totalfemales'], scale=False</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.customers.Customers.clusterCustomers" title="Permalink to this definition">¶</a></dt>
-<dd><p>Clusters the customers together based on gender, zipcode, numOrders, and TotalSpent.
-:param feature_set: optional. must have keys ‘results’ and ‘columns’.
-:type feature_set: QueryResponse or dictionary
-:param Data that will be clustered.:
-:param num_clusters: optional. default=8 The number of clusters to form as well as
-:type num_clusters: int
-:param the number of centroids to generate.:
-:param algorithm: optional. “auto”, “full” or “elkan”, default=”auto”. K-means algorithm
-:type algorithm: string
-:param to use. The classical EM-style algorithm is “full”. The “elkan” variation is more efficient:
-:param by using the triangle inequality, but currently doesn’t support sparse data. “auto” chooses:
-:param “elkan” for dense data and “full” for sparse data.:
-:param init: optional. {‘k-means++’, ‘random’ or an ndarray}. Method for initialization,
-:type init: string
-:param defaults to ‘k-means++’: ‘k-means++’ : selects initial cluster centers for k-mean
-:param clustering in a smart way to speed up convergence. See section Notes in k_init for more:
-:param details.:
-:param ‘random’: choose k observations (rows) at random from data for the initial centroids.
-:param If an ndarray is passed, it should be of shape:
-:type If an ndarray is passed, it should be of shape: n_clusters, n_features
-:param initial centers.:
-:param cluster_on: column names to use as cluster features
-:type cluster_on: list of str</p>
+<dd><p>Clusters the customers together based on cluster_on parameter.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">tuple(numorders’, ‘gender’, ‘totalpop’, ‘totalspent’, ‘zipcode’, ‘customermatchedid’,
-‘medianage’, ‘totalmales’, ‘totalfemales’, ‘householdid’, ‘firstname’, ‘numcustomerid’,
-‘cluster’, ‘customerids): numOrders is the number of times a customer has purchased a book.
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>feature_set</strong> (<a class="reference internal" href="#dora.datasources.QueryResponse" title="dora.datasources.QueryResponse"><em>QueryResponse</em></a><em> or </em><em>dictionary</em>) – optional. must have keys ‘results’ and ‘columns’.</li>
+<li><strong>that will be clustered.</strong> (<em>Data</em>) – </li>
+<li><strong>num_clusters</strong> (<em>int</em>) – optional. default=8 The number of clusters to form as well as the number of centroids to generate.</li>
+<li><strong>algorithm</strong> (<em>string</em>) – optional. “auto”, “full” or “elkan”, default=”auto”.
+K-means algorithm to use. The classical EM-style algorithm is “full”. The “elkan” variation is more efficient
+by using the triangle inequality, but currently doesn’t support sparse data. “auto” chooses
+“elkan” for dense data and “full” for sparse data.</li>
+<li><strong>init</strong> (<em>string</em>) – optional. {‘k-means++’, ‘random’ or an ndarray}.
+Method for initialization, defaults to ‘k-means++’
+‘k-means++’ : selects initial cluster centers for k-mean clustering in a smart way to speed up convergence. See section Notes in k_init for more details.
+‘random’: choose k observations (rows) at random from data for the initial centroids.
+If an ndarray is passed, it should be of shape (n_clusters, n_features) and gives the
+initial centers.</li>
+<li><strong>cluster_on</strong> (<em>list of str</em>) – column names to use as cluster features</li>
+<li><strong>scale</strong> (<em>bool</em>) – scale features</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><p>columns (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>): [‘numorders’, ‘gender’, ‘totalpop’, ‘totalspent’, ‘zipcode’, ‘customermatchedid’,’medianage’, ‘totalmales’, ‘totalfemales’, ‘householdid’, ‘firstname’, ‘numcustomerid’,’cluster’, ‘customerids’ ]</p>
+<p>results (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">tuple(int,str,int,int,float,int,int,float,int,str,int,int,list(int))</span></code>)</p>
+<p>numOrders is the number of times a customer has purchased a book.
 gender is the gender of the customer. zipcode identifiies the customers location.  TotalPop
 is the total population for the zipcode. MedianAge is the median age of the population for
 the zipcode. customermatchedid is the number of customerids that matched with the customer.
@@ -240,7 +374,12 @@ the totalnumber of females of the population for the zipcode. TotalSpent is the 
 the customer has spent on books. householdid is the customer’s hosuehold identification.
 firstname is the customer’s name.numCustomerid is the number of customerids per customer.
 cluster is the label of the cluster the customer belongs to. customerids is a list of all
-the customerids that correspond to that customer.</td>
+the customerids that correspond to that customer.</p>
+</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#dora.datasources.QueryResponse" title="dora.datasources.QueryResponse">QueryResponse</a></p>
+</td>
 </tr>
 </tbody>
 </table>
@@ -249,27 +388,44 @@ the customerids that correspond to that customer.</td>
 <dl class="method">
 <dt id="dora.customers.Customers.idsForCustomer">
 <code class="descname">idsForCustomer</code><span class="sig-paren">(</span><em>customermatchedids=[]</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.customers.Customers.idsForCustomer" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Find all customerid for customermatchedid</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>customermatchedids</strong> (<em>list</em>) – optional. list of customermatchedids to filter on.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">columns (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>): [‘customermatchedid’, ‘customerid’]<p>results (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">tuple(int,int)</span></code>)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#dora.datasources.QueryResponse" title="dora.datasources.QueryResponse">QueryResponse</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="dora.customers.Customers.membersOfHousehold">
-<code class="descname">membersOfHousehold</code><span class="sig-paren">(</span><em>householdID=0</em>, <em>sample_size=100</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.customers.Customers.membersOfHousehold" title="Permalink to this definition">¶</a></dt>
+<code class="descname">membersOfHousehold</code><span class="sig-paren">(</span><em>householdID</em>, <em>sample_size=100</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.customers.Customers.membersOfHousehold" title="Permalink to this definition">¶</a></dt>
 <dd><p>For each household, find the customerid, firstname, and gender for each member.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>householdID</strong> (<em>stirng</em>) – optional. The householdID that the members will be found of.</li>
+<li><strong>householdID</strong> (<em>int</em>) – The householdID that the members will be found of.</li>
 <li><strong>sample_size</strong> (<em>int</em>) – optional. Percentage of the data the query will run over.</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">customerid is the unique customer id. firstname is the
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><p>columns (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>): [‘customerid’, ‘firstname’, ‘gender’]</p>
+<p>results (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">tuple(int,str,str)</span></code>)</p>
+<p>customerid is the unique customer id. firstname is the
 name of the customer. gender is the gender of the customer.</p>
+</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">tuple(customerid, firstname, gender)</p>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#dora.datasources.QueryResponse" title="dora.datasources.QueryResponse">QueryResponse</a></p>
 </td>
 </tr>
 </tbody>
@@ -278,26 +434,18 @@ name of the customer. gender is the gender of the customer.</p>
 
 <dl class="method">
 <dt id="dora.customers.Customers.productsByHousehold">
-<code class="descname">productsByHousehold</code><span class="sig-paren">(</span><em>min_date='1900-1-1'</em>, <em>max_date=None</em>, <em>householdID=0</em>, <em>sample_size=100</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.customers.Customers.productsByHousehold" title="Permalink to this definition">¶</a></dt>
+<code class="descname">productsByHousehold</code><span class="sig-paren">(</span><em>householdID</em>, <em>min_date='1900-1-1'</em>, <em>max_date=None</em>, <em>sample_size=100</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.customers.Customers.productsByHousehold" title="Permalink to this definition">¶</a></dt>
 <dd><p>For each household, all of the products that have been purchased.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>householdID</strong> (<em>int</em>) – The householdID that the members will be found of.</li>
 <li><strong>min_date</strong> (<em>string</em>) – optional. date. Limits the search result timeframe.</li>
-<li><strong>max_date</strong> (<em>string</em>) – optional. date. Limits the timeframe for which</li>
-<li><strong>results will be returned</strong> (<a class="reference internal" href="#module-dora.customers" title="dora.customers"><em>customers</em></a>) – </li>
-<li><strong>householdID</strong> (<em>stirng</em>) – optional. The householdID that the members will be found of.</li>
-<li><strong>sample_size</strong> (<em>int</em>) – optional. Percentage of the data the query will run over.</li>
+<li><strong>max_date</strong> (<em>string</em>) – optional. date. Limits the search result timeframe.</li>
+<li><strong>sample_size</strong> – optional. Percentage of the data the query will run over.</li>
 </ul>
-</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">product is the unique product id. asin is the product code
-of the product that was purchased.</p>
-</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">tuple(productid, asin, gender)</p>
 </td>
 </tr>
 </tbody>
@@ -317,15 +465,15 @@ of the product that was purchased.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>min_date</strong> (<em>string</em>) – optional. date. Limits the search result timeframe.</li>
-<li><strong>max_date</strong> (<em>string</em>) – optional. date. Limits the timeframe for which</li>
-<li><strong>results will be returned</strong> (<a class="reference internal" href="#module-dora.customers" title="dora.customers"><em>customers</em></a>) – </li>
+<li><strong>max_date</strong> (<em>string</em>) – optional. date. Limits the search result timeframe.</li>
 <li><strong>householdid</strong> (<em>tuple</em>) – optional. householdids that will be excluded from the query results.</li>
 <li><strong>sample_size</strong> (<em>int</em>) – optional. Percentage of the data the query will run over.</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">tuple(numOrders, gender, zipcode, TotalPop, MedianAge, TotalMales, TotalFemales,
-TotalSpent,householdid, firstname,numCustomerid ): numOrders is the number of times a
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><p>columns (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>): [‘numOrders’, ‘gender’, ‘zipcode’, ‘TotalPop’, ‘MedianAge’, ‘TotalMales’, ‘TotalFemales’,’TotalSpent’,’householdid’, ‘firstname’,’numCustomerid’ ]</p>
+<p>results (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">tuple(int,str,int,int,float,int,int,float,int,str,int)</span></code>)</p>
+<p>numOrders is the number of times a
 customer has purchased a book. gender is the gender of the customer. zipcode identifiies
 the customers location.  TotalPop is the total population for the zipcode. MedianAge is
 the median age of the population for the zipcode. TotalMales is the total number of males
@@ -333,6 +481,10 @@ of the population for the zipcode. TotalFemales is the total number of females o
 population for the zipcode. TotalSpent is the total amount the customer has spent on books.
 householdid is the customer’s hosuehold identification. firstname is the customer’s name.
 numCustomerid is the number of customerids per customer.</p>
+</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#dora.datasources.QueryResponse" title="dora.datasources.QueryResponse">QueryResponse</a></p>
 </td>
 </tr>
 </tbody>
@@ -350,18 +502,22 @@ thefirst and last order, the time spent as customer and the time since the last 
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>min_date</strong> (<em>string</em>) – optional. date. Limits the search result timeframe.</li>
-<li><strong>max_date</strong> (<em>string</em>) – optional. date. Limits the timeframe for which</li>
-<li><strong>results will be returned</strong> (<a class="reference internal" href="#module-dora.customers" title="dora.customers"><em>customers</em></a>) – </li>
+<li><strong>max_date</strong> (<em>string</em>) – optional. date. Limits the search result timeframe.</li>
 <li><strong>sample_size</strong> (<em>int</em>) – optional. Percentage of the data the query will run over.</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">tuple(householdid, TotalSpent, TotalOrders, first_order, last_order, time_as_customer,
-time_since_last_order): householdid is the unique household id. TotalSpent is the amount of
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><p>columns (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>): [‘HouseholdID’, ‘TotalSpent’, ‘TotalOrders’, ‘first_order’, ‘last_order’, ‘time_as_customer’,’time_since_last_order’]</p>
+<p>results (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">tuple(int,float,int,date,date,interval,interval)</span></code>)</p>
+<p>householdid is the unique household id. TotalSpent is the amount of
 money spenton all order. TotalOrders is the number of orders that have been made by that
 household. first_order is the time when the first order was made. last_order is the time
 since the lastorder. time_as_customer is the time the members of the household has been
 customers.</p>
+</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#dora.datasources.QueryResponse" title="dora.datasources.QueryResponse">QueryResponse</a></p>
 </td>
 </tr>
 </tbody>
@@ -406,15 +562,42 @@ customers.</p>
 <dt id="dora.datasources.QueryResponse">
 <em class="property">class </em><code class="descclassname">dora.datasources.</code><code class="descname">QueryResponse</code><span class="sig-paren">(</span><em>columns</em>, <em>results</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.datasources.QueryResponse" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<p>Main response object for API queries</p>
+<dl class="attribute">
+<dt id="dora.datasources.QueryResponse.columns">
+<code class="descname">columns</code><a class="headerlink" href="#dora.datasources.QueryResponse.columns" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of columns included in query response</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dora.datasources.QueryResponse.is_cached">
+<code class="descname">is_cached</code><a class="headerlink" href="#dora.datasources.QueryResponse.is_cached" title="Permalink to this definition">¶</a></dt>
+<dd><p>boolean indiciating if results came from local cache</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dora.datasources.QueryResponse.results">
+<code class="descname">results</code><a class="headerlink" href="#dora.datasources.QueryResponse.results" title="Permalink to this definition">¶</a></dt>
+<dd><p>list of tuples containing response data</p>
+</dd></dl>
+
 <dl class="method">
 <dt id="dora.datasources.QueryResponse.to_csv">
 <code class="descname">to_csv</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.datasources.QueryResponse.to_csv" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>convert response results to a csv with header, saved to path</p>
+</dd></dl>
 
 <dl class="method">
 <dt id="dora.datasources.QueryResponse.to_pandas">
 <code class="descname">to_pandas</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#dora.datasources.QueryResponse.to_pandas" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>convert response results to pandas dataframe, all default pandas settings</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="dora.datasources.QueryResponse.vis">
+<code class="descname">vis</code><a class="headerlink" href="#dora.datasources.QueryResponse.vis" title="Permalink to this definition">¶</a></dt>
+<dd><p>QueryVis object for visualization convenience</p>
+</dd></dl>
 
 </dd></dl>
 
@@ -456,7 +639,7 @@ customers.</p>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>min_date</strong> (<em>string</em>) – optional. date. Limits the search result timeframe.</li>
 <li><strong>max_date</strong> (<em>string</em>) – optional. date. Limits the timeframe for which</li>
-<li><strong>results will be returned</strong> (<a class="reference internal" href="#module-dora.customers" title="dora.customers"><em>customers</em></a>) – </li>
+<li><strong>results will be returned</strong> (<a class="reference internal" href="#dora.api.DataExplorer.customers" title="dora.api.DataExplorer.customers"><em>customers</em></a>) – </li>
 <li><strong>sample_size</strong> (<em>int</em>) – optional. Percentage of the data the query will run over.</li>
 </ul>
 </td>
@@ -489,7 +672,7 @@ numunits_sum is the number of times the book was purchased.</p>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>min_date</strong> (<em>string</em>) – optional. date. Limits the search result timeframe.</li>
 <li><strong>max_date</strong> (<em>string</em>) – optional. date. Limits the timeframe for which</li>
-<li><strong>results will be returned</strong> (<a class="reference internal" href="#module-dora.customers" title="dora.customers"><em>customers</em></a>) – </li>
+<li><strong>results will be returned</strong> (<a class="reference internal" href="#dora.api.DataExplorer.customers" title="dora.api.DataExplorer.customers"><em>customers</em></a>) – </li>
 <li><strong>sample_size</strong> (<em>int</em>) – optional. Percentage of the data the query will run over.</li>
 </ul>
 </td>
