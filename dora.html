@@ -126,7 +126,7 @@ with a Config object.</p>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><p>columns (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>): [‘clientid’,’hour’,’api_calls’]</p>
-<p>results (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">tuple(str,int,int)</span></code></p>
+<p>results (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">tuple(str,int,int))</span></code></p>
 </p>
 </td>
 </tr>
@@ -140,7 +140,7 @@ with a Config object.</p>
 <dl class="method">
 <dt id="dora.benchmarks.Benchmarks.insert">
 <code class="descname">insert</code><span class="sig-paren">(</span><em>function</em>, <em>args</em>, <em>kwargs</em>, <em>start</em>, <em>end</em>, <em>is_cached</em>, <em>client_id</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.benchmarks.Benchmarks.insert" title="Permalink to this definition">¶</a></dt>
-<dd><p>Log an API call.</p>
+<dd><p>Log an API call to SqlSource.</p>
 </dd></dl>
 
 <dl class="method">
@@ -161,7 +161,7 @@ with a Config object.</p>
 </td>
 </tr>
 <tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><p>columns (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>): [‘function_name’,’is_cached’,’avg_runtime_seconds’,’total_runtime_seconds’,’invocations’]</p>
-<p>results (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">tuple(str,bool,float,float,int)</span></code></p>
+<p>results (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">tuple(str,bool,float,float,int))</span></code></p>
 </p>
 </td>
 </tr>
@@ -563,24 +563,6 @@ customers.</p>
 <em class="property">class </em><code class="descclassname">dora.datasources.</code><code class="descname">QueryResponse</code><span class="sig-paren">(</span><em>columns</em>, <em>results</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.datasources.QueryResponse" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
 <p>Main response object for API queries</p>
-<dl class="attribute">
-<dt id="dora.datasources.QueryResponse.columns">
-<code class="descname">columns</code><a class="headerlink" href="#dora.datasources.QueryResponse.columns" title="Permalink to this definition">¶</a></dt>
-<dd><p>list of columns included in query response</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="dora.datasources.QueryResponse.is_cached">
-<code class="descname">is_cached</code><a class="headerlink" href="#dora.datasources.QueryResponse.is_cached" title="Permalink to this definition">¶</a></dt>
-<dd><p>boolean indiciating if results came from local cache</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="dora.datasources.QueryResponse.results">
-<code class="descname">results</code><a class="headerlink" href="#dora.datasources.QueryResponse.results" title="Permalink to this definition">¶</a></dt>
-<dd><p>list of tuples containing response data</p>
-</dd></dl>
-
 <dl class="method">
 <dt id="dora.datasources.QueryResponse.to_csv">
 <code class="descname">to_csv</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.datasources.QueryResponse.to_csv" title="Permalink to this definition">¶</a></dt>
@@ -619,7 +601,8 @@ customers.</p>
 <dl class="function">
 <dt id="dora.logger.log">
 <code class="descclassname">dora.logger.</code><code class="descname">log</code><span class="sig-paren">(</span><em>f</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.logger.log" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Decorator function to log API function calls to local log file and to SqlSource.</p>
+</dd></dl>
 
 </div>
 <div class="section" id="module-dora.orders">
@@ -638,23 +621,32 @@ customers.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>min_date</strong> (<em>string</em>) – optional. date. Limits the search result timeframe.</li>
-<li><strong>max_date</strong> (<em>string</em>) – optional. date. Limits the timeframe for which</li>
-<li><strong>results will be returned</strong> (<a class="reference internal" href="#dora.api.DataExplorer.customers" title="dora.api.DataExplorer.customers"><em>customers</em></a>) – </li>
-<li><strong>sample_size</strong> (<em>int</em>) – optional. Percentage of the data the query will run over.</li>
+<li><strong>max_date</strong> (<em>string</em>) – optional. date.Limits the search result timeframe.</li>
+<li><strong>sample_size</strong> (<em>int</em>) – optional. Percentage of the orders the query will run over.</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">tuple(productid, asin, num_orders, first_order, last_order, days_on_sale, unitprice_min,
-unitprice_max, uniteprice_avg, numunits_min, numunits_max, numunits_avg, numunites_sum,
-totalprice_min, totalprice_max, totalprice_avg, totalprice_sum): productid is the unique
-identifier for the product. asin is the asin for the product. first_order is the date of the
-first product being shipped. last_order is the last day an order was shipped. days_on_sale
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><dl class="docutils">
+<dt>columns (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>): [‘productid’, ‘asin’, ‘num_orders’,</dt>
+<dd><p class="first last">’first_order’, ‘last_order’, ‘days_on_sale’, ‘unitprice_min’,’unitprice_max’,
+‘uniteprice_avg’, ‘numunits_min’, ‘numunits_max’, ‘numunits_avg’, ‘numunites_sum’,
+‘totalprice_min’, ‘totalprice_max’, ‘totalprice_avg’, ‘totalprice_sum’]</p>
+</dd>
+</dl>
+<p>results (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">tuple(str,int,int,float))</span></code></p>
+<p>productid is the unique identifier for the product. asin is the asin for the product.
+first_order is the date of the first product being shipped.
+last_order is the last day an order was shipped. days_on_sale
 is the total number of days the product was on sale. unitprice_min is the minimum price the
 product. unitprice_max is the maximum price for the product. unitprice_avg is the average
 price for the product. numunits_min is the minimum number of times the book was purchased in
 one order. numunits_max is the largest number of times the book was purchased in one order.
 numunits_avg is the average number of times the book was purchased in the same order.
 numunits_sum is the number of times the book was purchased.</p>
+</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#dora.datasources.QueryResponse" title="dora.datasources.QueryResponse">QueryResponse</a></p>
 </td>
 </tr>
 </tbody>
@@ -671,19 +663,21 @@ numunits_sum is the number of times the book was purchased.</p>
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>min_date</strong> (<em>string</em>) – optional. date. Limits the search result timeframe.</li>
-<li><strong>max_date</strong> (<em>string</em>) – optional. date. Limits the timeframe for which</li>
-<li><strong>results will be returned</strong> (<a class="reference internal" href="#dora.api.DataExplorer.customers" title="dora.api.DataExplorer.customers"><em>customers</em></a>) – </li>
+<li><strong>max_date</strong> (<em>string</em>) – optional. date. Limits the search result timeframe.</li>
 <li><strong>sample_size</strong> (<em>int</em>) – optional. Percentage of the data the query will run over.</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">countyname is the name of the
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><p>columns (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>): [‘countyname’, ‘countypop’, ‘NumofOrders’, ‘TotalSpending’]</p>
+<p>results (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">tuple(str,int,int,float))</span></code></p>
+<p>countyname is the name of the
 county the zipcode corresonds to. countypop is the population of the county. NumofOrders is
 the number of orders that have been purchased by customers in the zipcode. TotalSpending is
 the amount of money customers in the zipcode have purchased.</p>
+</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">tuple(countyname, countypop, ‘NumofOrders’, ‘TotalSpending’)</p>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#dora.datasources.QueryResponse" title="dora.datasources.QueryResponse">QueryResponse</a></p>
 </td>
 </tr>
 </tbody>
@@ -702,7 +696,21 @@ the amount of money customers in the zipcode have purchased.</p>
 <dl class="method">
 <dt id="dora.products.Products.byCategory">
 <code class="descname">byCategory</code><span class="sig-paren">(</span><em>nodeid</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.products.Products.byCategory" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Retrieve products by category</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>nodeid</strong> (<em>int</em>) – category nodeid to search for</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">columns (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>): [‘productid’]<p>results (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">tuple(int)</span></code>)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#dora.datasources.QueryResponse" title="dora.datasources.QueryResponse">QueryResponse</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="dora.products.Products.clusterProducts">
@@ -714,22 +722,27 @@ results as the features (num_orders, avgrating, category, and days_on_sale).</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>num_clusters</strong> (<em>int</em>) – optional. default=8 The number of clusters to form as well as</li>
-<li><strong>number of centroids to generate.</strong> (<em>the</em>) – </li>
-<li><strong>algorithm</strong> (<em>string</em>) – optional. “auto”, “full” or “elkan”, default=”auto”. K-means algorithm</li>
-<li><strong>use. The classical EM-style algorithm is “full”. The “elkan” variation is more efficient</strong> (<em>to</em>) – </li>
-<li><strong>using the triangle inequality</strong><strong>, </strong><strong>but currently doesn’t support sparse data. “auto” chooses</strong> (<em>by</em>) – </li>
-<li><strong>for dense data and “full” for sparse data.</strong> (<em>“elkan”</em>) – </li>
+<li><strong>num_clusters</strong> (<em>int</em>) – optional. default=8 The number of clusters to form as well as
+the number of centroids to generate.</li>
+<li><strong>algorithm</strong> (<em>string</em>) – optional. “auto”, “full” or “elkan”, default=”auto”. K-means algorithm
+to use. The classical EM-style algorithm is “full”. The “elkan” variation is more efficient
+by using the triangle inequality, but currently doesn’t support sparse data. “auto” chooses
+“elkan” for dense data and “full” for sparse data.</li>
 <li><strong>random_state</strong> (<em>int</em>) – optional. int used to genderate random number.</li>
 <li><strong>asin</strong> (<em>tuple</em><em>(</em><em>string</em><em>)</em>) – optional. asins will be the centers of the kmeans clustering.</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">productid is the products unqiue identifier. asin is the
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><p>columns (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>): [‘productid’, ‘asin’, ‘y_pred’]</p>
+<p>results (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">tuple(int,</span> <span class="pre">str,</span> <span class="pre">int)</span></code>)</p>
+<blockquote>
+<div><p>productid is the products unqiue identifier. asin is the
 identification of the book. y_pred is the label of the clsuter that the product belongs to.</p>
+</div></blockquote>
+</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">tuple(productid, asin, y_pred)</p>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#dora.datasources.QueryResponse" title="dora.datasources.QueryResponse">QueryResponse</a></p>
 </td>
 </tr>
 </tbody>
@@ -746,20 +759,22 @@ and the number of times that book was purchased.</p>
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
-<li><strong>asin</strong> (<em>list</em>) – required. book asin ids. Determines the books that coPurchases will</li>
-<li><strong>searched for.</strong> (<em>be</em>) – </li>
+<li><strong>asin</strong> (<em>list</em>) – required. book asin ids. Determines the books that coPurchases will be searched for.</li>
 <li><strong>min_date</strong> (<em>string</em>) – optional. date. Limits the search result timeframe.</li>
 <li><strong>max_date</strong> (<em>string</em>) – optional. date. Limits the search result timeframe.</li>
 <li><strong>sample_size</strong> (<em>int</em>) – optional. Percentage of the data the query will run over.</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">asin is the identification of the book that was purchased
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><p>columns (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>): [‘asin’, ‘numPurch’]</p>
+<p>results (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">tuple(str,int)</span></code>)</p>
+<p>asin is the identification of the book that was purchased
 in the same order as one of the input bools. numPurch is the number of times
 the book the book was purchased.</p>
+</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">tuple(asin, numPurch)</p>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#dora.datasources.QueryResponse" title="dora.datasources.QueryResponse">QueryResponse</a></p>
 </td>
 </tr>
 </tbody>
@@ -769,7 +784,21 @@ the book the book was purchased.</p>
 <dl class="method">
 <dt id="dora.products.Products.priceDistribution">
 <code class="descname">priceDistribution</code><span class="sig-paren">(</span><em>bins=5</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.products.Products.priceDistribution" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Produces statistics for each product.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>bins</strong> (<em>int</em><em> or </em><em>list of tuple</em><em>(</em><em>int</em><em>,</em><em>int</em><em>)</em>) – If bins is an int, prices are bin’d with steps (max price-min price)/bin. A list of tuples can be used to create you own bin limits.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">columns (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>): [‘count_&lt;bin min&gt;_to_&lt;bin max&gt;’…]<p>results (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">tuple(int,</span> <span class="pre">int...))</span></code>)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#dora.datasources.QueryResponse" title="dora.datasources.QueryResponse">QueryResponse</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="dora.products.Products.ratingsDistribution">
@@ -782,24 +811,25 @@ the book the book was purchased.</p>
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
 <li><strong>min_date</strong> (<em>string</em>) – optional. date. inclusive bottom limit of reviewTime</li>
 <li><strong>max_date</strong> (<em>string</em>) – optional. date. inclusive upper limit of reviewTime</li>
-<li><strong>asin</strong> (<em>list</em>) – optional. The asins of the products the rating distrubtion will be produced</li>
-<li><strong>Defaults to returning distributions for all asins</strong> (<em>for.</em>) – </li>
+<li><strong>asin</strong> (<em>list</em>) – optional. The asins of the products the rating distrubtion will be produced for. Defaults to returning distributions for all asins</li>
 <li><strong>sample_size</strong> (<em>int</em>) – optional. Percentage of the reviews the query will run over.</li>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><dl class="docutils">
-<dt>QueryResponse(asin, productid, ‘one_star_votes’, ‘two_star_votes’, ‘three_star_votes’,</dt>
-<dd><p class="first last">’four_star_votes’, ‘five_star_votes) (tuple(str,int,int,int,int,int,int)):
-asin is the label for the book. productid is the unique identifier for the product.
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><p>columns (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>): [asin, productid, ‘one_star_votes’, ‘two_star_votes’, ‘three_star_votes’,’four_star_votes’, ‘five_star_votes’]</p>
+<p>results (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">tuple(str,int,int,int,int,int,int)</span></code>)</p>
+<blockquote>
+<div><p>asin is the label for the book. productid is the unique identifier for the product.
 one_star_votes is the number of one star reveiws the book
 received. two_star_votes is the number of two star reveiws the book received.
 three_star_votes is the number of three star reveiws the book received. four_star_votes is
 the number of four star reveiws the book received. five_star_votes is the number of five
 star reveiws the book received.</p>
-</dd>
-</dl>
+</div></blockquote>
 </p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#dora.datasources.QueryResponse" title="dora.datasources.QueryResponse">QueryResponse</a></p>
 </td>
 </tr>
 </tbody>
@@ -809,7 +839,21 @@ star reveiws the book received.</p>
 <dl class="method">
 <dt id="dora.products.Products.seasonalOrderDistribution">
 <code class="descname">seasonalOrderDistribution</code><span class="sig-paren">(</span><em>asin=[]</em><span class="sig-paren">)</span><a class="headerlink" href="#dora.products.Products.seasonalOrderDistribution" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Produces statistics for each product.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>asin</strong> (<em>list of str</em>) – asin product filter</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">columns (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>): [‘asin’,’productid’,’spring_sales’,’summer_sales’,’fall_sales’,’winter_sales’]<p>results (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">tuple(str,</span> <span class="pre">int,</span> <span class="pre">int,</span> <span class="pre">int,</span> <span class="pre">int,</span> <span class="pre">int))</span></code>)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference internal" href="#dora.datasources.QueryResponse" title="dora.datasources.QueryResponse">QueryResponse</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="dora.products.Products.statsByProduct">
@@ -828,14 +872,18 @@ is returned.</p>
 </ul>
 </td>
 </tr>
-<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">productid is
-the products unqiue identifier. asin is the identification of the book. num_orders
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><p>columns (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">str</span></code>): [‘productid’, ‘asin’, ‘num_orders’, ‘avgrating’, ‘category’, ‘days_on_sale’]</p>
+<p>results (<code class="xref py py-obj docutils literal"><span class="pre">list</span></code> of <code class="xref py py-obj docutils literal"><span class="pre">tuple(int,str,int,float,int,int)</span></code>)</p>
+<blockquote>
+<div><p>productid is the products unqiue identifier. asin is the identification of the book. num_orders
 counts the number of times the book has been purchased. avgrating is the average star
 rating of the book based on the user reviews. category is the product category that the
 book belongs to. days_on_sale is the number of days the book has been on sale.</p>
+</div></blockquote>
+</p>
 </td>
 </tr>
-<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">tuple(productid, asin, num_orders, avgrating, category, days_on_sale)</p>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="#dora.datasources.QueryResponse" title="dora.datasources.QueryResponse">QueryResponse</a></p>
 </td>
 </tr>
 </tbody>
